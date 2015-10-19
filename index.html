@@ -39,8 +39,10 @@
 //document.write("<div class='.col-md-8'>加载前</div>");
 var lianjie=true;
 loadScript("app.js?t="+(new Date()).getTime(),function(){ lianjie=false;});
-setTimeout(function () { if (lianjie) $("#app_body").html("<h1>连接超时，服务器连接失败！</h1>") }, 1000)
-//loadScript("http://"+service.ip+":"+service.port+"/JcArt/app.js?t="+(new Date()).getTime(),function(){ $("body").append("ok加载完毕");});
+setTimeout(function () {
+    if (lianjie)
+        document.getElementById("app_body").innerHTML = "<h1>连接超时，服务器连接失败！</h1>";
+}, 1000);//loadScript("http://"+service.ip+":"+service.port+"/JcArt/app.js?t="+(new Date()).getTime(),function(){ $("body").append("ok加载完毕");});
 //document.write("<script onload='alert(6)'  src='http://"+service.ip+":"+service.port+"/JcArt/app.js'><\/script>");
 function loadScript(url, callback){
 var script = document.createElement("script")
