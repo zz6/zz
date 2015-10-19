@@ -1,27 +1,70 @@
 ﻿<!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>zz聊天室</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <title>中族·承源</title>
+    <link href="bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        #app {
+            border: 2px solid #ff0000;
+        }
+    </style>
 </head>
 <body>
-    <section class="page-header">
+    <div id="ss"></div><div id="loading"></div>
 
-        <h1 class="project-name">欢迎来到我的聊天室</h1>
-        <div>
-            <div></div>
-            <input />
+    <div id="app" class="container">
+
+        <div id="app_head"></div>
+        <div id="app_left"></div>
+        <div id="app_body">
+            <h1>正在加载请稍后...</h1>
+
         </div>
-        <button class="btn">清空</button>
-        <button class="btn">发送</button>
-    </section>
+        <div id="app_bottom"></div>
 
-    <section class="main-content"></section>
+    </div>
+    <script src="config.js"></script>
+    <script src="react.js"></script>
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="JSXTransformer.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="jeact.min.js"></script>
+    <script>
+
+
+//document.write("<div class='.col-md-8'>加载前</div>");
+var lianjie=true;
+loadScript("app.js?t="+(new Date()).getTime(),function(){ lianjie=false;});
+setTimeout(function () { if (lianjie) $("#app_body").html("<h1>连接超时，服务器连接失败！</h1>") }, 1000)
+//loadScript("http://"+service.ip+":"+service.port+"/JcArt/app.js?t="+(new Date()).getTime(),function(){ $("body").append("ok加载完毕");});
+//document.write("<script onload='alert(6)'  src='http://"+service.ip+":"+service.port+"/JcArt/app.js'><\/script>");
+function loadScript(url, callback){
+var script = document.createElement("script")
+script.type = "text/javascript";
+if (script.readyState){ //IE
+script.onreadystatechange = function(){
+if (script.readyState == "loaded" ||
+script.readyState == "complete"){
+script.onreadystatechange = null;
+callback();
+}
+};
+} else { //Others: Firefox, Safari, Chrome, and Opera
+script.onload = function(){
+callback();
+};
+}
+script.src = url;
+document.body.appendChild(script);
+}
+
+
+    </script>
+
 
 
 </body>
